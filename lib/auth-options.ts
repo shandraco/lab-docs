@@ -2,6 +2,7 @@ import { emailOTP } from "better-auth/plugins/email-otp";
 import { nextCookies } from "better-auth/next-js";
 import type { BetterAuthOptions } from "better-auth";
 import type { Pool } from "pg";
+import { claimCodeEmail } from "./sign-in-limit";
 
 export type SendCode = (email: string, code: string) => Promise<void>;
 
@@ -44,6 +45,9 @@ export function authOptions({ db, secret, baseURL, sendCode }: { db: Pool; secre
           );
           // Unknown or switched-off people get nothing; the answer to the browser is the same.
           if (!rows[0] || rows[0].deactivatedAt) return;
+          // Past the per-address limit, also nothing: the per-IP limit alone can be dodged by
+          // faking X-Forwarded-For, and this stops anyone flooding a person's inbox.
+          if (!(await claimCodeEmail(db, email))) return;
           await sendCode(email, otp);
         },
       }),
