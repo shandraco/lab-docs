@@ -73,9 +73,10 @@ first owner with `pnpm person:add`. A production server without the mail setting
 send codes at all, rather than writing them to a log.
 
 Run it behind a proxy that sets `X-Forwarded-For` to the real client address (Vercel, Fly,
-Render and a standard nginx or Caddy setup all do). Sign-in rate limits are counted per
-address from that header, so a server exposed directly lets a caller fake it and send
-unlimited code emails. Guessing a code stays limited to 5 tries per code either way.
+Render and a standard nginx or Caddy setup all do). The general rate limits are counted per
+IP from that header, so on a server exposed directly a caller can fake it. Two limits hold
+either way: each email address gets at most 3 sign-in codes in 10 minutes, and each code
+allows 5 guesses.
 
 ## Change the templates
 
