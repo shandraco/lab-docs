@@ -1,0 +1,14 @@
+.footer {
+  margin-block-start: auto;
+  border-block-start: var(--border);
+  background: var(--raised);
+}
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-m) var(--space-xl);
+  padding-block: var(--space-l);
+}
+.note { color: var(--muted); max-inline-size: 40ch; }

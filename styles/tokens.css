@@ -1,0 +1,81 @@
+/*
+ * Design tokens. Everything visual reads from here. Brain: css-design-tokens-in-root,
+ * oklch-palettes-with-checked-contrast, type-scale-and-fluid-type-with-clamp,
+ * dark-mode-designed-not-inverted.
+ *
+ * Direction: a drafting desk. Cool grey desk, white sheets, navy ink, one carbon-blue for
+ * links and focus. The sheet stays white in dark mode: it is the paper the client receives.
+ *
+ * Contrast: `node scripts/contrast.mjs` computes every text and boundary pair from these
+ * exact values and fails under 4.5 (text) or 3 (UI). Re-run it when a colour moves.
+ */
+:root {
+  color-scheme: light dark;
+
+  /* Colour */
+  --desk: light-dark(#e6eaef, #121821);
+  --raised: light-dark(#f6f8fa, #1a222d);
+  --ink: light-dark(#1a2332, #e6ebf2);
+  --muted: light-dark(#4f5c6e, #a3afbf);
+  --accent: light-dark(#2747a8, #9db3f7);
+  --accent-hover: light-dark(#1b3480, #c3d1fa);
+  --button: light-dark(#1a2332, #e6ebf2); /* primary fill; text on it is --button-ink */
+  --button-hover: light-dark(#2c3a52, #ffffff);
+  --button-ink: light-dark(#ffffff, #121821);
+  --danger: light-dark(#b42318, #f4978c);
+  --final: light-dark(#1f6b45, #7fd6a4);
+  --line: light-dark(#7a8698, #6f7c8e); /* input borders: 3:1 against desk and raised */
+  --rule: light-dark(#cbd3dc, #2a3442); /* decorative rules */
+  --focus: var(--accent);
+  --skeleton: light-dark(#d9dfe6, #222b37);
+
+  /* The sheet: always paper, in both themes. */
+  --sheet: #ffffff;
+  --sheet-ink: #1a2332;
+  --sheet-muted: #536173;
+  --sheet-rule: #c5cdd8;
+  --gap-fill: #fde68a;
+  --gap-ink: #5c3d00;
+
+  /* Type: Atkinson Hyperlegible for the interface (built for legibility), Source Serif 4
+     for the document, matching the PDF. Families come from next/font via the *-face vars. */
+  --font-ui: var(--font-ui-face), system-ui, sans-serif;
+  --font-doc: var(--font-doc-face), Georgia, serif;
+
+  /* Fluid scale, 360px -> 1280px. rem so the user's text size applies. Body never below 18px. */
+  --step--1: 1rem;
+  --step-0: clamp(1.125rem, 1.076rem + 0.217vw, 1.25rem); /* 18 -> 20 */
+  --step-1: clamp(1.25rem, 1.152rem + 0.435vw, 1.5rem); /* 20 -> 24 */
+  --step-2: clamp(1.5rem, 1.37rem + 0.58vw, 1.875rem); /* 24 -> 30 */
+  --step-3: clamp(1.875rem, 1.6rem + 1.2vw, 2.5rem); /* 30 -> 40 */
+
+  /* Space */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: clamp(3rem, 2rem + 4vw, 5rem);
+  --gutter: clamp(1rem, 0.6rem + 1.8vw, 2rem);
+  --measure: 65ch;
+  --page-max: 84rem;
+
+  --radius-s: 3px;
+  --radius-m: 6px;
+  --border: 1px solid var(--rule);
+  --sheet-shadow: 0 1px 2px rgb(26 35 50 / 0.12), 0 8px 24px -8px rgb(26 35 50 / 0.18);
+
+  /* Motion: short, and off under reduced motion. */
+  --dur-1: 120ms;
+  --dur-2: 220ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-1: 0ms; --dur-2: 0ms; }
+}

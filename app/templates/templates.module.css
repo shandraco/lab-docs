@@ -1,0 +1,8 @@
+.page { padding-block: var(--space-l) var(--space-2xl); display: grid; gap: var(--space-l); }
+.list { list-style: none; padding: 0; display: grid; gap: var(--space-m); max-inline-size: 60rem; }
+.item { display: flex; gap: var(--space-m); align-items: flex-start; padding: var(--space-m); background: var(--raised); border: var(--border); border-radius: var(--radius-m); max-inline-size: none; }
+.body { display: grid; gap: var(--space-2xs); justify-items: start; }
+.name { font-size: var(--step-1); }
+.ok { color: var(--final); font-weight: 700; }
+.warn { color: var(--danger); font-weight: 700; }
+.preview { max-inline-size: 52rem; }

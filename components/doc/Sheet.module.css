@@ -1,0 +1,56 @@
+/* The sheet is paper in both themes, so it reads only the --sheet-* tokens. */
+.sheet {
+  container-type: inline-size;
+  background: var(--sheet);
+  color: var(--sheet-ink);
+  font-family: var(--font-doc);
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: clamp(1.25rem, 7cqi, 4rem) clamp(1.25rem, 8cqi, 4.5rem);
+  border-radius: 2px;
+  box-shadow: var(--sheet-shadow);
+  overflow-wrap: anywhere;
+}
+.sheet p, .sheet li { max-inline-size: none; }
+.sheet ::selection { background: #c9d6f8; color: var(--sheet-ink); }
+.draft {
+  margin-block-end: var(--space-s);
+  padding-block-end: var(--space-2xs);
+  border-block-end: 1px dashed var(--sheet-rule);
+  color: #9a3412;
+  font-family: var(--font-ui);
+  font-size: var(--step--1);
+  text-align: center;
+}
+.heading { font-family: var(--font-doc); font-size: 1.75rem; line-height: 1.2; margin-block-end: var(--space-3xs); letter-spacing: -0.005em; }
+.date { color: var(--sheet-muted); margin-block-end: var(--space-l); }
+.h { font-family: var(--font-doc); font-size: 1.0625rem; margin-block: var(--space-m) var(--space-2xs); }
+.n { font-variant-numeric: tabular-nums; }
+.p { margin-block-end: var(--space-xs); white-space: pre-line; }
+.note { margin-block-start: var(--space-m); padding-block-start: var(--space-xs); border-block-start: 1px solid var(--sheet-rule); color: var(--sheet-muted); font-size: 0.875rem; }
+.list { margin-block: 0 var(--space-xs); padding-inline-start: 1.4em; }
+.list li + li { margin-block-start: var(--space-3xs); }
+.table { inline-size: 100%; border-collapse: collapse; margin-block: var(--space-2xs) var(--space-s); font-size: 0.9375rem; }
+.table th, .table td { text-align: start; padding: 0.4em 0.6em; border-block-end: 1px solid var(--sheet-rule); vertical-align: top; }
+.table thead th { border-block: 1px solid var(--sheet-rule); }
+.table [data-numeric] { text-align: end; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.table tfoot th, .table tfoot td { font-weight: 700; text-align: end; }
+.sigs { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: var(--space-l); margin-block-start: var(--space-xl); }
+.sig p { margin: 0; }
+.sigOrg { font-weight: 700; margin-block-end: var(--space-l) !important; }
+.sigLine { border-block-start: 1px solid var(--sheet-ink); padding-block-start: 2px; margin-block-end: var(--space-s) !important; color: var(--sheet-muted); font-size: 0.8125rem; font-family: var(--font-ui); }
+.sigTitle { color: var(--sheet-muted); margin-block-end: var(--space-m) !important; }
+.gap {
+  background: var(--gap-fill);
+  color: var(--gap-ink);
+  padding: 0 0.25em;
+  border-radius: 2px;
+  font-family: var(--font-ui);
+  font-size: 0.9em;
+  font-weight: 700;
+  box-decoration-break: clone;
+}
+.subject { padding: var(--space-2xs) var(--space-xs); margin-block-end: var(--space-m); background: #eef2fb; border-radius: 2px; font-weight: 700; }
+.subjectLabel { font-family: var(--font-ui); font-weight: 400; color: var(--sheet-muted); margin-inline-end: var(--space-2xs); }
+.footer { margin-block-start: var(--space-xl); color: var(--sheet-muted); font-family: var(--font-ui); font-size: 0.8125rem; }
+.sheet[data-format="email"] { font-family: var(--font-ui); font-size: 1.0625rem; }

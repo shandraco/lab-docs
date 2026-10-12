@@ -1,0 +1,20 @@
+.sheet {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  inline-size: 4.25rem;
+  block-size: 5.5rem; /* US Letter proportions */
+  padding: 0.5rem 0.45rem;
+  background: var(--sheet);
+  border-radius: 2px;
+  box-shadow: var(--sheet-shadow);
+}
+.sheet > span { display: block; block-size: 3px; border-radius: 1px; background: var(--sheet-rule); }
+.h { inline-size: 55%; background: var(--sheet-ink) !important; }
+.l { inline-size: 100%; }
+.s { inline-size: 70%; }
+.t { inline-size: 100%; block-size: 5px !important; background: transparent !important; border: 1px solid var(--sheet-rule); }
+.sig { margin-block-start: auto; inline-size: 100%; block-size: 1px !important; background: linear-gradient(90deg, var(--sheet-ink) 0 42%, transparent 42% 58%, var(--sheet-ink) 58%) !important; }
+.subj { inline-size: 100%; block-size: 6px !important; background: #dbe3f3 !important; }
+.blk { inline-size: 100%; block-size: 14px !important; background: #eef1f5 !important; }

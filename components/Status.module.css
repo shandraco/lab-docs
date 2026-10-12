@@ -1,0 +1,14 @@
+.status {
+  display: inline-flex;
+  align-items: baseline;
+  padding: 0.1em 0.55em;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-s);
+  font-weight: 700;
+  font-size: var(--step--1);
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--muted);
+}
+.status[data-status="final"] { color: var(--final); }
+.v { font-weight: 400; }

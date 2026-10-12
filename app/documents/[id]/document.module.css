@@ -1,0 +1,9 @@
+.page { padding-block: var(--space-l) var(--space-2xl); display: grid; gap: var(--space-l); }
+.top { display: grid; gap: var(--space-2xs); }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); color: var(--muted); }
+.versions { display: grid; gap: var(--space-s); max-inline-size: 60rem; }
+.vlist { list-style: none; padding: 0; border-block-start: var(--border); }
+.vitem { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2xs) var(--space-m); padding-block: var(--space-xs); border-block-end: var(--border); max-inline-size: none; }
+.vlinks { display: flex; flex-wrap: wrap; gap: var(--space-m); }
+.vlinks a { display: inline-flex; align-items: center; min-block-size: 2.75rem; }
+.binned { padding: var(--space-m); border: 2px solid var(--danger); border-radius: var(--radius-m); background: var(--raised); display: grid; gap: var(--space-2xs); justify-items: start; }

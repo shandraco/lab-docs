@@ -1,0 +1,15 @@
+.list { list-style: none; padding: 0; border-block-start: var(--border); }
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2xs) var(--space-m);
+  padding-block: var(--space-s);
+  border-block-end: var(--border);
+  max-inline-size: none;
+}
+.main { display: grid; gap: var(--space-3xs); min-inline-size: 0; }
+.title { font-weight: 700; font-size: var(--step-1); color: var(--ink); text-decoration-color: var(--line); }
+.title:hover { color: var(--accent); }
+.meta { color: var(--muted); }
