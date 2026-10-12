@@ -37,7 +37,7 @@ export function authOptions({ db, secret, baseURL, sendCode }: { db: Pool; secre
         expiresIn: 10 * 60,
         allowedAttempts: 5,
         storeOTP: "hashed",
-        async sendVerificationOTP({ email, otp, type }) {
+        async sendVerificationOTP({ email, otp, type }, ctx) {
           if (type !== "sign-in") return;
           const { rows } = await db.query<{ deactivatedAt: Date | null }>(
             'select "deactivatedAt" from "user" where email = $1',
@@ -45,9 +45,10 @@ export function authOptions({ db, secret, baseURL, sendCode }: { db: Pool; secre
           );
           // Unknown or switched-off people get nothing; the answer to the browser is the same.
           if (!rows[0] || rows[0].deactivatedAt) return;
-          // Past the per-address limit, also nothing: the per-IP limit alone can be dodged by
-          // faking X-Forwarded-For, and this stops anyone flooding a person's inbox.
-          if (!(await claimCodeEmail(db, email))) return;
+          // Past the limits, also nothing (see lib/sign-in-limit.ts). The caller is read from the
+          // same header the per-IP limit uses; the address-wide cap holds even if it is faked.
+          const ip = ctx?.headers?.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "";
+          if (!(await claimCodeEmail(db, email, ip))) return;
           await sendCode(email, otp);
         },
       }),

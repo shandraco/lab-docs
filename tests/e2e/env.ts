@@ -11,5 +11,6 @@ export const testPeople = [
 
 export const [OWNER, PARTNER] = testPeople;
 
-/** Never signs in; only asks for codes, to check the per-address limit. */
+/** Never sign in; only ask for codes, to check the sign-in code limits. */
 export const LIMITED = { name: "Lee Limits", email: "limits@lab.test", role: "staff" } as const;
+export const VICTIM = { name: "Val Victim", email: "victim@lab.test", role: "staff" } as const;

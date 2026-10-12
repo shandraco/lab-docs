@@ -75,8 +75,9 @@ send codes at all, rather than writing them to a log.
 Run it behind a proxy that sets `X-Forwarded-For` to the real client address (Vercel, Fly,
 Render and a standard nginx or Caddy setup all do). The general rate limits are counted per
 IP from that header, so on a server exposed directly a caller can fake it. Two limits hold
-either way: each email address gets at most 3 sign-in codes in 10 minutes, and each code
-allows 5 guesses.
+either way: each email address gets at most 10 sign-in codes in 10 minutes (3 per caller),
+and each code allows 5 guesses. Because the tight limit is per caller, a stranger asking
+for your codes uses up their own allowance, not yours.
 
 ## Change the templates
 

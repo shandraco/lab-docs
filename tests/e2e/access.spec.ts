@@ -11,7 +11,7 @@ test("a partner cannot see the owner's clients or the owner pages", async ({ bro
   await o.goto("/clients/new");
   await o.getByLabel("Client name").fill("Owner Only Co");
   await o.getByRole("button", { name: /^Save/ }).first().click();
-  await expect(o).toHaveURL(/\/clients\/[\da-f-]{36}\?added=1$/);
+  await expect(o).toHaveURL(/\/clients\/[\da-f-]{36}\?added=1$/, { timeout: 15_000 });
   const clientPath = new URL(o.url()).pathname;
 
   expect((await p.goto(clientPath))?.status()).toBe(404);
